@@ -1,12 +1,23 @@
 class ToDo {
     constructor(){
-    constructor(selector) {
+    constructor(selector){
         this.container = document.querySelector(selector) || document.body
     }
         this.tasks = [{
             text: 'Lorem ipsum',
             isCompleted: false,
         }]
+
+        this.render()
+    }
+
+    addTask(newTaskText){
+        const newTask = {
+            text: newTaskText,
+            isCompleted: false,
+        }
+
+        this.tasks = this.tasks.concat(newTask)
 
         this.render()
     }
@@ -38,6 +49,7 @@ class ToDo {
         button.innerText = 'Add'
 
         const clickHandler = () => console.log(input.value)
+        const.clickHandler = () => this.addTask(input.value) 
 
         button.addEventListener(
             'click',
