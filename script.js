@@ -28,4 +28,17 @@ class ToDo {
 
         this.container.appendChild(div)
     }
+
+    renderForm(){
+        const div = document.createElement('div')
+        const input = document.createElement('input')
+        const button = document.createElement('button')
+
+        input.setAttribute('placeholder', 'New task')
+        button.innerText = 'Add'
+
+        div.appendChild(input)
+        div.appendChild(button)
+        this.container.appendChild(div)
+    }
 }
