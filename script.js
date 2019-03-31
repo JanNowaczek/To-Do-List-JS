@@ -49,6 +49,11 @@ class ToDo {
         this.container.innerHTML = ''
 
         this.renderForm()
+
+        this.tasks.forEach(
+            task => this.renderTask(task)
+            (task, index) => this.renderTask(task, index)
+        )
     }
 
     renderTask(task){
@@ -57,8 +62,12 @@ class ToDo {
 
         div.innerText = task.text
 
-        if(task.isCompleted) div.style.textDecoration = 'line-through'
         if (task.isCompleted) div.style.textDecoration = 'line-through'
+
+        div.addEventListener(
+            'click',
+            () => this.toggleTask(index)
+        )
 
         this.container.appendChild(div)
     }
