@@ -2,10 +2,6 @@ class ToDo {
     constructor(selector) {
         this.container = document.querySelector(selector) || document.body
     
-        this.tasks = [{
-            text: 'Lorem ipsum',
-            isCompleted: false,
-        }]
         this.tasks = JSON.parse(localStorage.getItem('to-do-list')) || []
 
         this.render()
@@ -17,20 +13,15 @@ class ToDo {
 
     toggleTask(taskIndex) {
         this.tasks = this.tasks.map(
-            (task, index) => {
-                if(index === taskIndex) {
-                    return {
-                    (task, index) => 
-                    index === taskIndex 
-                    
+            (task, index) => (
+            index === taskIndex ?
+                    {
                         text: task.text,
                         isCompleted: !task.isCompleted,
                     }
-                }else{
-                    return task
-                }
-            }
-                
+                    :
+                    task
+            )
         )
 
         this.render()
@@ -38,7 +29,6 @@ class ToDo {
     }
 
     addTask(newTaskText){
-    addTask(newTaskText) {
         const newTask = {
             text: newTaskText,
             isCompleted: false,
@@ -51,19 +41,16 @@ class ToDo {
     }
 
     render(){
-    render() {
         this.container.innerHTML = ''
 
         this.renderForm()
 
         this.tasks.forEach(
-            task => this.renderTask(task)
             (task, index) => this.renderTask(task, index)
         )
     }
 
-    renderTask(task){
-    renderTask(task) {
+    renderTask(task, index){
         const div = document.createElement('div')
 
         div.innerText = task.text
@@ -79,7 +66,6 @@ class ToDo {
     }
 
     renderForm(){
-    renderForm() {
         const div = document.createElement('div')
         const input = document.createElement('input')
         const button = document.createElement('button')
@@ -87,7 +73,6 @@ class ToDo {
         input.setAttribute('placeholder', 'New task')
         button.innerText = 'Add'
         const clickHandler = () => this.addTask(input.value)
-        const clickHandler = () => this.addTask(input.value) 
 
         button.addEventListener(
             'click',
