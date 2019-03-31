@@ -7,5 +7,25 @@ class ToDo {
             text: 'Lorem ipsum',
             isCompleted: false,
         }]
+
+        this.render()
+    }
+
+    render(){
+        this.container.innerHTML = ''
+
+        this.tasks.forEach(
+            task => this.renderTask(task)
+        )
+    }
+
+    renderTask(task){
+        const div = document.createElement('div')
+
+        div.innerText = task.text
+
+        if(task.isCompleted) div.style.textDecoration = 'line-through'
+
+        this.container.appendChild(div)
     }
 }
