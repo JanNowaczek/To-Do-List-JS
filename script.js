@@ -1,5 +1,4 @@
 class ToDo {
-    constructor(){
     constructor(selector) {
         this.container = document.querySelector(selector) || document.body
     
@@ -7,8 +6,13 @@ class ToDo {
             text: 'Lorem ipsum',
             isCompleted: false,
         }]
+        this.tasks = JSON.parse(localStorage.getItem('to-do-list')) || []
 
         this.render()
+    }
+
+    saveTask() {
+        localStorage.setItem('to-do-list', JSON.stringify(this.tasks))
     }
 
     toggleTask(taskIndex) {
@@ -30,6 +34,7 @@ class ToDo {
         )
 
         this.render()
+        this.saveTask()
     }
 
     addTask(newTaskText){
@@ -42,6 +47,7 @@ class ToDo {
         this.tasks = this.tasks.concat(newTask)
 
         this.render()
+        this.saveTask()
     }
 
     render(){
