@@ -37,6 +37,15 @@ class ToDo {
         input.setAttribute('placeholder', 'New task')
         button.innerText = 'Add'
 
+        const clickHandler = () => console.log(input.value)
+
+        button.addEventListener(
+            'click',
+            clickHandler
+        )
+
+        console.dir(clickHandler)
+
         div.appendChild(input)
         div.appendChild(button)
         this.container.appendChild(div)
